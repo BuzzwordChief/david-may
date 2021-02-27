@@ -28,17 +28,14 @@ jobs:
       - name: Install Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7 # Not needed with a .ruby-version file
-          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+          ruby-version: 2.7
+          bundler-cache: true
+          
+      - name: Install sshpass
+        run: apt install sshpass
 
       - name: 🔨 Build Project
         run: bundler exec nanoc
 
       - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
-        with:
-          local-dir: ./output/
-          server: ${{ secrets.server }}
-          username: ${{secrets.user }}
-          password: ${{ secrets.password }}
-          server-dir: ${{ secrets.serverDir }}
+        run: sshpass -p "${{secrets.PASSWORD}}" scp ./output ${{secrets.USER}}@${{secrets.SERVER}}:${{secrets.SERVERDIR}}
