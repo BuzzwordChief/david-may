@@ -35,4 +35,4 @@ jobs:
         run: bundler exec nanoc
 
       - name: 📂 Sync files
-        run: sshpass -p "${{secrets.PASSWORD}}" scp ./output ${{secrets.USER}}@${{secrets.SERVER}}:${{secrets.SERVERDIR}}
+        run: sshpass -p "${{secrets.PASSWORD}}" scp -r ./output ${{secrets.USER}}@${{secrets.SERVER}}:${{secrets.SERVERDIR}}
