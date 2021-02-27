@@ -35,4 +35,4 @@ jobs:
         run: bundler exec nanoc
       
       - name: 📂 Sync files
-        run: sshpass -p "${{secrets.PASSWORD}}" rsync -r -e --delete-delay "ssh -o StrictHostKeyChecking=no" output/ ${{secrets.USER}}@${{secrets.SERVER}}:${{secrets.SERVERDIR}}
+        run: sshpass -p "${{secrets.PASSWORD}}" rsync -r --delete -e "ssh -o StrictHostKeyChecking=no" output/ ${{secrets.USER}}@${{secrets.SERVER}}:${{secrets.SERVERDIR}}
