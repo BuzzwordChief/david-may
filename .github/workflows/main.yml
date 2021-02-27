@@ -36,5 +36,5 @@ jobs:
 
       - name: 📂 Sync files
         run: |
-          echo '${{secrets.SERVERSSH}}' >> .ssh/known_hosts
+          echo '${{secrets.SERVERSSH}}' >> ~/.ssh/known_hosts
           sshpass -p "${{secrets.PASSWORD}}" scp -r ./output ${{secrets.USER}}@${{secrets.SERVER}}:${{secrets.SERVERDIR}}
