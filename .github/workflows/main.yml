@@ -32,7 +32,7 @@ jobs:
           bundler-cache: true
           
       - name: Install sshpass
-        run: apt install sshpass
+        run: sudo apt-get install install sshpass
 
       - name: 🔨 Build Project
         run: bundler exec nanoc
