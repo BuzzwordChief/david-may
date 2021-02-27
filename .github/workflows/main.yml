@@ -33,8 +33,12 @@ jobs:
 
       - name: 🔨 Build Project
         run: bundler exec nanoc
-
+      
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SERVERSSH }}
+          known_hosts: ${{ secrets.SERVERSSH }}
+      
       - name: 📂 Sync files
-        run: |
-          echo '${{secrets.SERVERSSH}}' >> ~/.ssh/known_hosts
-          sshpass -p "${{secrets.PASSWORD}}" scp -r ./output ${{secrets.USER}}@${{secrets.SERVER}}:${{secrets.SERVERDIR}}
+        run: sshpass -p "${{secrets.PASSWORD}}" scp -r ./output ${{secrets.USER}}@${{secrets.SERVER}}:${{secrets.SERVERDIR}}
