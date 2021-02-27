@@ -13,13 +13,10 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   web-deploy:
     name: 🎉 Deploy
-    runs-on: ubuntu-latest
-  
+    runs-on: ubuntu-latest  
   
     steps:
       - name: 🚚 Get latest code
@@ -32,7 +29,7 @@ jobs:
           bundler-cache: true
           
       - name: Install sshpass
-        run: sudo apt-get install install sshpass
+        run: sudo apt-get install sshpass
 
       - name: 🔨 Build Project
         run: bundler exec nanoc
