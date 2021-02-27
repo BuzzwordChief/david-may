@@ -41,4 +41,4 @@ jobs:
           known_hosts: ${{ secrets.SERVERSSH }}
       
       - name: 📂 Sync files
-        run: sshpass -p "${{secrets.PASSWORD}}" scp -r ./output ${{secrets.USER}}@${{secrets.SERVER}}:${{secrets.SERVERDIR}}
+        run: sshpass -p "${{secrets.PASSWORD}}" scp -r output/ ${{secrets.USER}}@${{secrets.SERVER}}:${{secrets.SERVERDIR}}
