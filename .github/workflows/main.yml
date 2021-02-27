@@ -29,12 +29,10 @@ jobs:
           bundler-cache: true
           
       - name: Install sshpass
-        run: sudo apt-get install sshpass
+        run: sudo apt-get install sshpass rsync
 
       - name: 🔨 Build Project
         run: bundler exec nanoc
       
       - name: 📂 Sync files
-        run: |
-          ssh-keyscan -H ${{secrets.SERVER}} >> /home/runner/.ssh/known_hosts
-          sshpass -p "${{secrets.PASSWORD}}" scp -r output/ ${{secrets.USER}}@${{secrets.SERVER}}:${{secrets.SERVERDIR}}
+        run: sshpass -p "${{secrets.PASSWORD}}" rsync -r -e "ssh -o StrictHostKeyChecking=no" output/ ${{secrets.USER}}@${{secrets.SERVER}}:${{secrets.SERVERDIR}}
