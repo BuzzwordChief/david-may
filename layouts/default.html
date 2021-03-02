@@ -9,11 +9,12 @@
 
   <title>David May - <%= @item[:title] %>
   </title>
-  <link rel="stylesheet" href="/stylesheet.css">
+  <link rel="stylesheet" href="/styles/bulma.min.css">
+  <link rel="stylesheet" href="/styles/stylesheet.css">
 </head>
 
 <body>
-  <main id="main">
+  <main class="section container is-max-desktop">
     <%= yield %>
   </main>
 </body>
