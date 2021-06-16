@@ -21,3 +21,4 @@ compile '/**/*' do
 end
 
 layout '/**/*', :erb
+
